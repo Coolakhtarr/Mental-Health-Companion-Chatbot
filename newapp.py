@@ -117,7 +117,7 @@ st.sidebar.header("⚙️ Settings")
 api_key = None
 # Prefer API key from secrets.toml if available; otherwise allow manual entry as fallback.
 try:
-    api_key = st.secrets["gen-lang-client-0621818638"]
+    api_key = st.secrets["GOOGLE_API_KEY"]
     st.sidebar.caption("Using API key from secrets.toml")
 except KeyError:
     api_key = st.sidebar.text_input("Gemini API Key", type="password", help="Optional here if not set in .streamlit/secrets.toml")
@@ -316,4 +316,5 @@ if user_input:
             "ts": time.time()
         })
     st.rerun()
+
 
