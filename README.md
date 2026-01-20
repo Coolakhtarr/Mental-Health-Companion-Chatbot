@@ -11,8 +11,7 @@ A professional, supportive mental health companion for students, powered by Goog
 
 ## Important
 This app is not a substitute for professional help. If you're in immediate danger or considering harming yourself:
-- United States: Call or text 988 (Suicide & Crisis Lifeline)
-- International: Visit https://findahelpline.com or contact your local emergency services
+ Visit https://findahelpline.com or contact your local emergency services
 
 ## Prerequisites
 - Python 3.9+
@@ -70,3 +69,4 @@ The sidebar lets you choose between `gemini-1.5-pro` (higher quality) and `gemin
 
 ## License
 For educational purposes. Always seek qualified professional help if you are struggling with your mental health.
+
