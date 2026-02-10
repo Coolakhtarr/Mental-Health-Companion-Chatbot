@@ -109,7 +109,15 @@ if "mood_history" not in st.session_state:
     st.session_state.mood_history = []
 if "session_started_at" not in st.session_state:
     st.session_state.session_started_at = time.time()
-
+# -----------------------------------------------
+# UTILITY FUNCTIONS
+# -----------------------------------------------
+def reset_session():
+    st.session_state.messages = []
+    st.session_state.latencies = []
+    st.session_state.mood_history = []
+    # This effectively "reboots" the app for the user
+    st.rerun()
 # -----------------------------------------------
 # SIDEBAR
 # -----------------------------------------------
@@ -235,7 +243,31 @@ with st.sidebar:
 
 st.sidebar.markdown("---")
 st.sidebar.info("🧘 Mental health support tool.\n\nIndia Helpline: **1098** or **9152987821 (AASRA)**")
+# -----------------------------------------------
+# SIDEBAR
+# -----------------------------------------------
+st.sidebar.markdown("---")
+st.sidebar.subheader("🛠️ Session Management")
+col_a, col_b = st.sidebar.columns(2)
 
+with col_a:
+    if st.button("🗑️ Clear", use_container_width=True, help="Wipe chat history"):
+        reset_session()
+
+with col_b:
+    if st.session_state.messages:
+        # Create the summary string
+        summary = "MindEase Chat Summary\n" + "="*20 + "\n"
+        for m in st.session_state.messages:
+            summary += f"[{m['role'].upper()}]: {m['content']}\n\n"
+        
+        st.download_button(
+            label="📥 Export",
+            data=summary,
+            file_name=f"mindease_summary_{datetime.now().strftime('%m%d_%H%M')}.txt",
+            mime="text/plain",
+            use_container_width=True
+    )
 # (Left floating panel removed in favor of enlarged Streamlit sidebar with charts)
 
 # -----------------------------------------------
@@ -316,6 +348,7 @@ if user_input:
             "ts": time.time()
         })
     st.rerun()
+
 
 
 
