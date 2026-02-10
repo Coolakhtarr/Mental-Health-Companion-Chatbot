@@ -133,7 +133,7 @@ except KeyError:
 if api_key and st.session_state.chat is None:
     try:
         genai.configure(api_key=api_key)
-        model = genai.GenerativeModel("gemini-1.5-flash")
+        model = genai.GenerativeModel("gemini-2.0-flash-lite")
         st.session_state.chat = model.start_chat(history=[])
     except Exception as e:
         st.sidebar.error(f"API setup error: {e}")
@@ -348,6 +348,7 @@ if user_input:
             "ts": time.time()
         })
     st.rerun()
+
 
 
 
